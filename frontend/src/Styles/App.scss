@@ -1,0 +1,9 @@
+.main-container {
+  & { display: flex; justify-content: space-between; box-sizing: border-box; }
+  .left-sidebar {
+    & { background: #2c2c2c; height: 100vh; width: 20vw; color: #fff; padding: 10px 20px 10px 6px; box-sizing: border-box; }
+  }
+  .right-sidebar {
+    & { background: #2c2c2c; height: 100vh; width: 20vw; color: #fff; padding: 6px 10px 20px; box-sizing: border-box; }
+  }
+}
