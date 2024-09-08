@@ -1,0 +1,7 @@
+.page-editor {
+  & { width: 100%; box-sizing: border-box; position: relative; }
+  h4 { text-align: center; }
+  .main-page-playarea {
+    & { min-height: 85vh;  background: gray; margin: 20px; overflow-y: scroll; }
+  }
+}
