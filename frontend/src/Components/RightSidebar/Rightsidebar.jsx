@@ -1,7 +1,14 @@
 import { Autocomplete, Button, TextField } from '@mui/material'
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { addHtmlElement } from '../../store/features/htmlElementCounterSlice';
 
 export default function Rightsidebar() {
+
+  // redux
+  const dispatch = useDispatch();
+
+  // useStates
   const [htmlElements, setHtmlElements] = useState([
     "div",
     "span",
@@ -45,8 +52,11 @@ export default function Rightsidebar() {
     "pre",        // Preformatted text
   ]);
 
-  const addElement = () => {
+  const [selectedValue, setSelectedValue] = useState("")
 
+  // functions
+  const addElement = () => {
+    dispatch(addHtmlElement())
   }
 
   return (
@@ -56,6 +66,7 @@ export default function Rightsidebar() {
         <Autocomplete
           disablePortal
           options={htmlElements}
+          // value={selectedValue}
           sx={{
             "& .MuiOutlinedInput-root": {
               border: "2px solid #fff",
@@ -70,7 +81,9 @@ export default function Rightsidebar() {
               color: "#fff"
             }
           }}
-          renderInput={(params) => <TextField {...params} label="" />}
+          renderInput={(params) => <TextField {...params} onChange={(e)=>{
+            console.log(e.currentTarget.value)
+          }} label="" />}
         />
         <Button className='add-btn' variant='outlined' onChange={addElement}>Add</Button>
       </div>
