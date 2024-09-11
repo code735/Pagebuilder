@@ -1,19 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-  allHtmlTags: {}
+  allHtmlTags: []
 }
 
 export const htmlElementCounterSlice = createSlice({
   name: "htmlElement",
   initialState,
   reducers: {
-    addHtmlElement: (state,{payload}) => {
-      state.allHtmlTags = payload;
+    addRootHtmlElement: (state,{payload}) => {
+      state.allHtmlTags = [
+        ...state.allHtmlTags,
+        {
+          "rootElement":payload
+        }
+      ];
     }
-  }
+  } 
 })
 
-export const { addHtmlElement } = htmlElementCounterSlice.actions
+export const { addRootHtmlElement } = htmlElementCounterSlice.actions
 
 export default htmlElementCounterSlice.reducer
