@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-  allHtmlTags: []
+  allHtmlTags: [],
+  currentSelectedTag: {}
 }
 
 export const htmlElementCounterSlice = createSlice({
@@ -12,7 +13,10 @@ export const htmlElementCounterSlice = createSlice({
       state.allHtmlTags = [
         ...state.allHtmlTags,
         {
-          "rootElement":payload
+          "id": state.allHtmlTags?.length + 1,
+          "rootElement":payload,
+          "styles": [],
+          "childElements": []
         }
       ];
     }

@@ -22,9 +22,13 @@ export default function FloatingIsland() {
       >
         <div className="html-tags-container">
           {
-            allHtmlTags?.map((el) => {
-              return <div className="html-tag">{el.rootElement}</div>
-            })
+            allHtmlTags?.length > 0 ? allHtmlTags?.map((el) => {
+              return <div className="html-tag">
+                <div className="tag-name">
+                  {el.rootElement}
+                </div>
+              </div>
+            }) : <>Elements not added yet</>
           }
         </div>
       </Drawer>

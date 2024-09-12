@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Autocomplete, TextField } from '@mui/material'
+import { Autocomplete, Button, TextField } from '@mui/material'
+import { useSelector } from 'react-redux';
 
 export default function Leftsidebar() {
   const [cssProperties, setCssProperties] = useState([
@@ -37,30 +38,38 @@ export default function Leftsidebar() {
     "animation",
     "transform",
   ]);
-  
+
+  const { currentSelectedTag } = useSelector((state) => state.htmlElement)
 
   return (
     <div className='left-sidebar'>
-      <p>CSS properties</p>
-      <Autocomplete
-        disablePortal
-        options={cssProperties}
-        sx={{
-          "& .MuiOutlinedInput-root": {
-            border: "2px solid #fff",
-            color: "#fff",
-            padding: "0"
-          },
-          "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-            color: "#fff",
-          },
-          "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline:hover": {
-            border: "2px solid #fff",
-            color: "#fff"
-          }
-        }}
-        renderInput={(params) => <TextField {...params} label="" />}
-      />
+      {
+        Object.keys(currentSelectedTag)?.length > 0 ? <div className="add-style-container">
+          <p>Add Styles</p>
+          <Autocomplete
+            disablePortal
+            options={cssProperties}
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                border: "2px solid #fff",
+                color: "#fff",
+                padding: "0"
+              },
+              "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                color: "#fff",
+              },
+              "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline:hover": {
+                border: "2px solid #fff",
+                color: "#fff"
+              }
+            }}
+            renderInput={(params) => <TextField {...params} label="" />}
+          />
+          <Button className='add-btn'>Add</Button>
+        </div> : <div className="no-element-selected">
+          <h4>No element selected</h4>
+        </div>
+      }
     </div>
   )
 }
