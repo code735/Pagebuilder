@@ -19,10 +19,14 @@ export const htmlElementCounterSlice = createSlice({
           "childElements": []
         }
       ];
+    },
+    addCurrentSelectedTag: (state, {payload}) => {
+      console.log("payload",payload)
+      state.currentSelectedTag = payload
     }
   } 
 })
 
-export const { addRootHtmlElement } = htmlElementCounterSlice.actions
+export const { addRootHtmlElement, addCurrentSelectedTag } = htmlElementCounterSlice.actions
 
 export default htmlElementCounterSlice.reducer
