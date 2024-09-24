@@ -16,7 +16,6 @@ export default function Pageeditor() {
   
   return (
     <div className='page-editor'>
-      <h4>Landing Page</h4>
       <div className="main-page-playarea">
         {
           allHtmlTags?.map((el) => {
