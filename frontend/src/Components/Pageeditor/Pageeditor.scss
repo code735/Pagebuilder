@@ -8,4 +8,7 @@
     }
     .selected-element { border-color: black; }
   }
+  .main-page-playarea ::-webkit-scrollbar-thumb {
+    & { width: 10px; }
+  }
 }
