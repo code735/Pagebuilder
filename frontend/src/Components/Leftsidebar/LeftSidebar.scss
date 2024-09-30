@@ -1,5 +1,9 @@
 .left-sidebar {
- .add-btn {
-  & { border: 2px solid #fff; color: #fff; margin-top: 10px; }
- } 
+ .left-sidebar-navigation {
+  .nav-options {
+    .search-option {
+      svg { font-size: 14px; }
+    }
+  }
+ }
 }
