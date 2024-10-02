@@ -3,12 +3,16 @@
 
   .left-sidebar-navigation {
     .nav-options {
-      & { display: flex; justify-content: space-between; width: 100%; padding: 10px; box-sizing: border-box; }
+      & { display: flex; justify-content: space-between; width: 100%; padding: 10px; box-sizing: border-box; border-bottom: 1px solid #625d5d; align-items: center; }
 
       .search-option {
         & { display: flex; align-items: center; gap: 5px; }
         svg { font-size: 14px; cursor: pointer; }
         p { font-weight: 600; font-size: 10px; margin: 0; }
+        .search-bar {
+          & { width: 70%; }
+          input { width: 100%; font-size: 12px; background: transparent;  color: #fff; border: none; outline: none; }
+        }
       }
 
       .close-option {
