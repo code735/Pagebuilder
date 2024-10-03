@@ -9,9 +9,16 @@
         & { display: flex; align-items: center; gap: 5px; }
         svg { font-size: 14px; cursor: pointer; }
         p { font-weight: 600; font-size: 10px; margin: 0; }
-        .search-bar {
-          & { width: 70%; }
-          input { width: 100%; font-size: 12px; background: transparent;  color: #fff; border: none; outline: none; }
+        .searchbar-addicon-container {
+          & { display: flex; align-items: center; justify-content: space-between; }
+          .search-bar {
+            & { width: 70%; display: flex; align-items: center; }
+            input {
+              & { width: 100%; font-size: 12px; background: transparent;  color: #fff; border: none; outline: none; }
+              &::placeholder { font-size: 10px; }
+            }
+          }
+          .add-html-icon :hover { background: #000; }
         }
       }
 

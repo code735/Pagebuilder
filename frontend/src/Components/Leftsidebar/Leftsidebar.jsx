@@ -3,7 +3,7 @@ import { Autocomplete, Button, TextField } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { addRootHtmlElement, handleSwitchController } from '../../store/features/htmlElementCounterSlice';
-import CloseIcon from '@mui/icons-material/Close';
+import { Add, Close, CloseIcon } from '@mui/icons-material';
 
 export default function Leftsidebar() {
   // Redux
@@ -80,17 +80,22 @@ export default function Leftsidebar() {
               <SearchOutlinedIcon />
             </div>
             {
-              switchControlRedux === 'add-html' ? <div className="search-bar">
-                <input type="text" />
+              switchControlRedux === 'add-html' ? <div className="searchbar-addicon-container">
+                <div className="search-bar">
+                  <input type="text" placeholder='add html...'/>
+                </div>
+                <div className="add-html-icon">
+                  <Add />
+                </div>
               </div> : <div className="search-option-text">
                 <p>DOM</p>
               </div>
             }
           </div>
-          <div className="close-option" onClick={()=>{
+          <div className="close-option" onClick={() => {
             dispatch(handleSwitchController("off"));
           }}>
-            <CloseIcon />
+            <Close />
           </div>
         </div>
       </div>
