@@ -101,6 +101,12 @@ export default function Leftsidebar() {
                   <div className="search-bar">
                     <input type="text" placeholder='Add HTML...' value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
                   </div>
+                  {
+                    inputValue && <div className="close-icon" onClick={() => { setInputValue("") }}>
+                      <Close />
+                    </div>
+                  }
+
                   <div className="add-html-icon" onClick={addElement}>
                     <Add />
                   </div>
@@ -121,7 +127,7 @@ export default function Leftsidebar() {
       </div>
       <div className="left-sidebar-container">
         {
-          switchControlRedux === "add-html" ? (
+          switchControlRedux === "add-html" && (
             <div className="suggestions-container">
               {
                 suggestions?.map((el, index) => (
@@ -136,12 +142,19 @@ export default function Leftsidebar() {
                 ))
               }
             </div>
-          ) : (
-            <div className="dom-container">
-              DOM elements will show up here
-            </div>
           )
         }
+        <div className="dom-container">
+          {
+            htmlElementRedux?.length > 0 ? htmlElementRedux?.map((el) => {
+              return <div className="html-tag">
+                <div className="tag-name">
+                  {el.rootElement}
+                </div>
+              </div>
+            }) : <>Elements not added yet</>
+          }
+        </div>
         {switchLeftSidebarFunctionalities(switchControlRedux)}
       </div>
     </div>
