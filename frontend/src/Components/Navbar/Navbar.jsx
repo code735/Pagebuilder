@@ -15,8 +15,7 @@ console.log("switchControl",switchControl)
     <div className='navbar'>
       <div className={`options-container`}>
         <div onClick={()=>{
-          switchControl === 'add-html' ? setselectedOption("") : setselectedOption("add-html")
-          switchControl === 'add-html' ? dispatch(handleSwitchController("off")) : dispatch(handleSwitchController("add-html"))
+          dispatch(handleSwitchController("add-html"))
         }} className={`html-icon add-html option-icons ${ switchControl === 'add-html' && "selected-option"}`}>
           <HtmlIcon />
         </div>

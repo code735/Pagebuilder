@@ -91,7 +91,7 @@ export default function Leftsidebar() {
         <div className="nav-options">
           <div className="search-option">
             <div className={`search-icon ${switchControlRedux == "search-dom" && "selected"}`} onClick={() => {
-              switchControlRedux === "search-dom" ? dispatch(handleSwitchController("off")) : dispatch(handleSwitchController("search-dom"))
+              dispatch(handleSwitchController("search-dom"))
             }}>
               <SearchOutlinedIcon />
             </div>
@@ -146,13 +146,13 @@ export default function Leftsidebar() {
         }
         <div className="dom-container">
           {
-            htmlElementRedux?.length > 0 ? htmlElementRedux?.map((el) => {
+            htmlElementRedux?.length > 0 && htmlElementRedux?.map((el) => {
               return <div className="html-tag">
                 <div className="tag-name">
                   {el.rootElement}
                 </div>
               </div>
-            }) : <>Elements not added yet</>
+            })
           }
         </div>
         {switchLeftSidebarFunctionalities(switchControlRedux)}

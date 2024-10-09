@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
   allHtmlTags: [],
-  switchControl: "off",
+  switchControl: "add-html",
   currentSelectedTag: {}
 }
 
