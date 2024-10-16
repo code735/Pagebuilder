@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Button } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import { addRootHtmlElement, handleSwitchController } from '../../store/features/htmlElementCounterSlice';
-import { Add, Close } from '@mui/icons-material';
+import { addRootHtmlElement, deleteElement, handleSwitchController } from '../../store/features/htmlElementCounterSlice';
+import { Add, Close, Delete } from '@mui/icons-material';
 
 export default function Leftsidebar() {
   const dispatch = useDispatch();
@@ -85,6 +85,10 @@ export default function Leftsidebar() {
     }
   };
 
+  const deleteHtmlTag = ( element ) => {
+    dispatch(deleteElement(element));
+  }
+
   return (
     <div className='left-sidebar'>
       <div className="left-sidebar-navigation">
@@ -149,7 +153,10 @@ export default function Leftsidebar() {
             htmlElementRedux?.length > 0 && htmlElementRedux?.map((el) => {
               return <div className="html-tag">
                 <div className="tag-name">
-                  {el.rootElement}
+                  <span>{el.rootElement}</span>
+                </div>
+                <div className="delete-btn" onClick={()=>{deleteHtmlTag(el)}}>
+                  <Delete />
                 </div>
               </div>
             })
