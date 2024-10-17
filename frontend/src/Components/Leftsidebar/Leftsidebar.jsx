@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { Button } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import { addRootHtmlElement, deleteElement, handleSwitchController } from '../../store/features/htmlElementCounterSlice';
+import { addCurrentSelectedTag, addRootHtmlElement, deleteElement, handleSwitchController } from '../../store/features/htmlElementSlice';
 import { Add, Close, Delete } from '@mui/icons-material';
 
 export default function Leftsidebar() {
   const dispatch = useDispatch();
   const htmlElementRedux = useSelector((state) => state.htmlElement.allHtmlTags);
   const switchControlRedux = useSelector((state) => state.htmlElement.switchControl);
+  const currentSelectedTag = useSelector((state) => state.htmlElement.currentSelectedTag);
 
   // HTML Elements List with both tagName and tag JSX elements
   const htmlElementsList = [
@@ -81,13 +82,25 @@ export default function Leftsidebar() {
   const addElement = () => {
     const selectedElement = suggestions.find(el => el.tagName === inputValue);
     if (selectedElement) {
-      dispatch(addRootHtmlElement(selectedElement.tagName));
+      dispatch(addRootHtmlElement({
+        "rootElement": selectedElement.tagName,
+        "styles":[
+          {
+            "temp":"temp"
+          }
+        ] 
+      }));
     }
   };
 
   const deleteHtmlTag = ( element ) => {
     dispatch(deleteElement(element));
   }
+
+  const selectTag = ( element ) => {
+    dispatch(addCurrentSelectedTag(element))
+  }
+  console.log("currentSelectedTag",currentSelectedTag)
 
   return (
     <div className='left-sidebar'>
@@ -151,7 +164,7 @@ export default function Leftsidebar() {
         <div className="dom-container">
           {
             htmlElementRedux?.length > 0 && htmlElementRedux?.map((el) => {
-              return <div className="html-tag">
+              return <div className={`html-tag ${currentSelectedTag.id == el.id && "selected"}`} onClick={()=>{selectTag(el)}}>
                 <div className="tag-name">
                   <span>{el.rootElement}</span>
                 </div>

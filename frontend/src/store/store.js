@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
-import htmlElementCounterSliceReducer from './features/htmlElementCounterSlice'
+import htmlElementSliceReducer from './features/htmlElementSlice'
 
 export const store = configureStore({
   reducer: {
-    htmlElement: htmlElementCounterSliceReducer
+    htmlElement: htmlElementSliceReducer
   },
 })

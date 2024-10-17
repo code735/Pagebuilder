@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import FloatingIsland from '../FloatingIsland/FloatingIsland'
 import { useDispatch, useSelector } from 'react-redux';
-import { addCurrentSelectedTag } from '../../store/features/htmlElementCounterSlice';
+import { addCurrentSelectedTag } from '../../store/features/htmlElementSlice';
 import { current } from '@reduxjs/toolkit';
 
 export default function Pageeditor() {

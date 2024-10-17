@@ -3,32 +3,32 @@ import { createSlice } from "@reduxjs/toolkit"
 const initialState = {
   allHtmlTags: [],
   switchControl: "add-html",
-  currentSelectedTag: {}
+  currentSelectedTag: {
+    styles: []
+  }
 }
 
-export const htmlElementCounterSlice = createSlice({
+export const htmlElementSlice = createSlice({
   name: "htmlElement",
   initialState,
   reducers: {
     addRootHtmlElement: (state,{payload}) => {
+      console.log("payload",payload)
       state.allHtmlTags = [
         ...state.allHtmlTags,
         {
           "id": state.allHtmlTags?.length + 1,
-          "rootElement":payload,
-          "styles": [],
+          "rootElement":payload.rootElement,
+          "styles": payload.styles,
           "childElements": []
         }
       ];
     },
     deleteElement: (state,{payload}) => {
       const filteredArray = state.allHtmlTags?.filter( item => item.id !== payload.id )
-      console.log("filteredArray",filteredArray)
-      console.log("payloadid",payload.id)
       state.allHtmlTags = state.allHtmlTags?.filter( item => item.id !== payload.id )
     },
     addCurrentSelectedTag: (state, {payload}) => {
-      console.log("payload",payload)
       state.currentSelectedTag = payload
     },
     handleSwitchController: (state, {payload}) => {
@@ -37,6 +37,6 @@ export const htmlElementCounterSlice = createSlice({
   } 
 })
 
-export const { addRootHtmlElement, addCurrentSelectedTag, handleSwitchController, deleteElement } = htmlElementCounterSlice.actions
+export const { addRootHtmlElement, addCurrentSelectedTag, handleSwitchController, deleteElement } = htmlElementSlice.actions
 
-export default htmlElementCounterSlice.reducer
+export default htmlElementSlice.reducer

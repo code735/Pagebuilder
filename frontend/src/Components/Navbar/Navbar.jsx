@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import HtmlIcon from '@mui/icons-material/Html';
 import { useDispatch, useSelector } from 'react-redux';
-import { handleSwitchController } from '../../store/features/htmlElementCounterSlice';
+import { handleSwitchController } from '../../store/features/htmlElementSlice';
 
 export default function Navbar() {
 

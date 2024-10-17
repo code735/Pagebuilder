@@ -1,7 +1,7 @@
 import { Autocomplete, Button, TextField } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addRootHtmlElement } from '../../store/features/htmlElementCounterSlice';
+import { addRootHtmlElement } from '../../store/features/htmlElementSlice';
 
 export default function Rightsidebar() {
   // Redux
@@ -68,33 +68,7 @@ export default function Rightsidebar() {
 
   return (
     <div className='right-sidebar'>
-      <p>Add HTML Element</p>
-      <div className='html-tag-container'>
-        <Autocomplete
-          disablePortal
-          options={htmlElements}
-          value={selectedValue}
-          onChange={(event, newValue) => setSelectedValue(newValue)}
-          sx={{
-            '& .MuiOutlinedInput-root': {
-              border: '2px solid #fff',
-              color: '#fff',
-              padding: '0',
-            },
-            '& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
-              color: '#fff',
-            },
-            '& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline:hover': {
-              border: '2px solid #fff',
-              color: '#fff',
-            },
-          }}
-          renderInput={(params) => <TextField {...params} label='' />}
-        />
-        <Button className='add-btn' variant='outlined' onClick={addElement}>
-          Add
-        </Button>
-      </div>
+      
     </div>
   );
 }
