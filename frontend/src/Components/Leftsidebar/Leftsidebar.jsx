@@ -81,6 +81,8 @@ export default function Leftsidebar() {
 
   const addElement = () => {
     const selectedElement = suggestions.find(el => el.tagName === inputValue);
+    const element = React.createElement(selectedElement.tagName)
+    console.log("element",element)
     if (selectedElement) {
       dispatch(addRootHtmlElement({
         "rootElement": selectedElement.tagName,
