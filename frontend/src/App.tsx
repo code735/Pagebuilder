@@ -1,5 +1,5 @@
+import React from 'react';
 import MasterContainer from './Components/MasterContainer/MasterContainer';
-import logo from './logo.svg';
 import './Styles/App.scss'
 
 function App() {
