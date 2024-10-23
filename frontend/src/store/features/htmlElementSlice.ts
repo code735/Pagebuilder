@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { htmlTagObj } from "../../types/htmlElementTypes"
 
 const initialState = {
-  allHtmlTags: [],
+  allHtmlTags:  [],
   switchControl: "add-html",
   currentSelectedTag: {
     styles: []
@@ -14,14 +15,17 @@ export const htmlElementSlice = createSlice({
   reducers: {
     addRootHtmlElement: (state,{payload}) => {
       console.log("payload",payload)
+
+      const htmlTagObjPayload:htmlTagObj = {
+        "id": state.allHtmlTags?.length + 1,
+        "rootElement":payload.rootElement,
+        "styles": payload.styles,
+        "childElements": []
+      }
+      
       state.allHtmlTags = [
         ...state.allHtmlTags,
-        {
-          "id": state.allHtmlTags?.length + 1,
-          "rootElement":payload.rootElement,
-          "styles": payload.styles,
-          "childElements": []
-        }
+        htmlTagObjPayload
       ];
     },
     deleteElement: (state,{payload}) => {
