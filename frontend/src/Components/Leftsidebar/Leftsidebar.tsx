@@ -60,12 +60,19 @@ export default function Leftsidebar() {
   }, [htmlElementRedux])
 
   useEffect(() => {
-    const filteredSuggestions = htmlElementsList.filter(element =>
-      element.tagName.toLowerCase().startsWith(inputValue.toLowerCase())
-    );
-    setSuggestions(filteredSuggestions);
+    const filteredSuggestions = htmlElementsList.map((element) => {
+      if ( element.tagName.toLowerCase().startsWith(inputValue.toLowerCase()) ) {
+        return element.tagName;
+      }
+    });
+    
+    let topSuggestions = htmlElementsList?.filter( element => filteredSuggestions.includes(element.tagName) )
+    let removedSuggestions = htmlElementsList?.filter( element => !filteredSuggestions.includes(element.tagName) )
+    
+    setSuggestions([...topSuggestions,...removedSuggestions]);
   }, [inputValue]);
 
+  console.log("suggestions",suggestions)
 
   // Functions 
 
@@ -158,7 +165,7 @@ export default function Leftsidebar() {
                     style={{ cursor: "pointer" }}
                     onClick={() => setInputValue(el.tagName)}
                   >
-                    {el?.fullName} <span className='tag'>{el?.tag}</span>
+                    <span className='tag'>{el?.tag}</span>
                   </div>
                 ))
               }
