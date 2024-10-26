@@ -2,11 +2,12 @@ import { Autocomplete, Button, TextField } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addRootHtmlElement } from '../../store/features/htmlElementSlice';
+import { CurrentRootState } from '../../store/store';
 
 export default function Rightsidebar() {
   // Redux
   const dispatch = useDispatch();
-  const htmlElementRedux = useSelector((state)=>state.htmlElement.allHtmlTags);
+  const htmlElementRedux = useSelector((state: CurrentRootState)=>state.htmlElement.allHtmlTags);
 
   // useStates
   const [htmlElements, setHtmlElements] = useState([

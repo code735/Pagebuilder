@@ -2,10 +2,11 @@ import React, { useEffect, useRef } from 'react';
 import FloatingIsland from '../FloatingIsland/FloatingIsland';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCurrentSelectedTag } from '../../store/features/htmlElementSlice';
+import { CurrentRootState } from '../../store/store';
 
 export default function PageEditor() {
   // useSelector and useDispatch
-  const { allHtmlTags, currentSelectedTag } = useSelector((state) => state.htmlElement);
+  const { allHtmlTags, currentSelectedTag } = useSelector((state: CurrentRootState) => state.htmlElement);
   const dispatch = useDispatch();
   
   // useRefs
@@ -42,10 +43,10 @@ export default function PageEditor() {
                     elementRefs.current[elementId] = ref;
                   }
                 },
-                className: `root-element ${currentSelectedTag.id === elementId ? 'selected-element' : ''}`,
+                className: `root-element ${currentSelectedTag?.id === elementId ? 'selected-element' : ''}`,
                 onClick: () => {
                   addComputedStyles(elementRefs.current[elementId]);
-                  if (currentSelectedTag.id === elementId) {
+                  if (currentSelectedTag?.id === elementId) {
                     dispatch(addCurrentSelectedTag({}));
                   } else {
                     dispatch(addCurrentSelectedTag(el));

@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { Button, Drawer } from '@mui/material';
 import { useSelector } from 'react-redux';
+import { CurrentRootState } from '../../store/store';
 
 export default function FloatingIsland() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
-  const { allHtmlTags } = useSelector((state) => state.htmlElement);
+  const { allHtmlTags } = useSelector((state:CurrentRootState) => state.htmlElement);
   const [htmlElements, setHtmlElements] = useState(allHtmlTags)
 
   return (

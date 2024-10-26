@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import HtmlIcon from '@mui/icons-material/Html';
 import { useDispatch, useSelector } from 'react-redux';
 import { handleSwitchController } from '../../store/features/htmlElementSlice';
+import { CurrentRootState } from '../../store/store';
 
 export default function Navbar() {
 
 const [selectedOption, setselectedOption] = useState("")
 const dispatch = useDispatch();
-const { switchControl } = useSelector((state) => state.htmlElement)
+const { switchControl } = useSelector((state:CurrentRootState) => state.htmlElement)
 
 console.log("switchControl",switchControl)
 

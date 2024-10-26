@@ -4,12 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { addCurrentSelectedTag, addRootHtmlElement, deleteElement, handleSwitchController } from '../../store/features/htmlElementSlice';
 import { Add, Close, Delete } from '@mui/icons-material';
+import { CurrentRootState } from '../../store/store';
 
 export default function Leftsidebar() {
   const dispatch = useDispatch();
-  const htmlElementRedux = useSelector((state) => state.htmlElement.allHtmlTags);
-  const switchControlRedux = useSelector((state) => state.htmlElement.switchControl);
-  const currentSelectedTag = useSelector((state) => state.htmlElement.currentSelectedTag);
+  const htmlElementRedux = useSelector((state: CurrentRootState) => state.htmlElement.allHtmlTags);
+  const switchControlRedux = useSelector((state: CurrentRootState) => state.htmlElement.switchControl);
+  const currentSelectedTag = useSelector((state: CurrentRootState) => state.htmlElement.currentSelectedTag);
 
   // HTML Elements List with both tagName and tag JSX elements
   const htmlElementsList = [
@@ -80,12 +81,12 @@ export default function Leftsidebar() {
   }
 
   const addElement = () => {
-    const selectedElement = suggestions.find(el => el.tagName === inputValue);
-    const element = React.createElement(selectedElement.tagName)
+    const selectedElement = suggestions.find(el => el?.tagName === inputValue);
+    const element = React.createElement(selectedElement?.tagName)
     console.log("element",element)
     if (selectedElement) {
       dispatch(addRootHtmlElement({
-        "rootElement": selectedElement.tagName,
+        "rootElement": selectedElement?.tagName,
         "styles":[
           {
             "temp":"temp"
@@ -156,7 +157,7 @@ export default function Leftsidebar() {
                     style={{ cursor: "pointer" }}
                     onClick={() => setInputValue(el.tagName)}
                   >
-                    {el.fullName} <span className='tag'>{el.tag}</span>
+                    {el?.fullName} <span className='tag'>{el?.tag}</span>
                   </div>
                 ))
               }
@@ -166,7 +167,7 @@ export default function Leftsidebar() {
         <div className="dom-container">
           {
             htmlElementRedux?.length > 0 && htmlElementRedux?.map((el) => {
-              return <div className={`html-tag ${currentSelectedTag.id == el.id && "selected"}`} onClick={()=>{selectTag(el)}}>
+              return <div className={`html-tag ${currentSelectedTag?.id == el.id && "selected"}`} onClick={()=>{selectTag(el)}}>
                 <div className="tag-name">
                   <span>{el.rootElement}</span>
                 </div>

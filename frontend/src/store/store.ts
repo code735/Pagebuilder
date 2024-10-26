@@ -6,3 +6,5 @@ export const store = configureStore({
     htmlElement: htmlElementSliceReducer
   },
 })
+
+export type CurrentRootState = ReturnType<typeof store.getState>;
