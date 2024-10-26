@@ -5,6 +5,7 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { addCurrentSelectedTag, addRootHtmlElement, deleteElement, handleSwitchController } from '../../store/features/htmlElementSlice';
 import { Add, Close, Delete } from '@mui/icons-material';
 import { CurrentRootState } from '../../store/store';
+import { htmlElementsListObj } from './LeftsidebarTypes';
 
 export default function Leftsidebar() {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ export default function Leftsidebar() {
   const currentSelectedTag = useSelector((state: CurrentRootState) => state.htmlElement.currentSelectedTag);
 
   // HTML Elements List with both tagName and tag JSX elements
-  const htmlElementsList = [
+  const htmlElementsList: htmlElementsListObj[] = [
     { tagName: 'div', fullName: 'division', tag: "</div>" },
     { tagName: 'span', fullName: 'span', tag: "</span>" },
     { tagName: 'p', fullName: 'paragraph', tag: "</p>" },
@@ -51,7 +52,7 @@ export default function Leftsidebar() {
 
   // State for storing the input value and the filtered suggestions
   const [inputValue, setInputValue] = useState('');
-  const [suggestions, setSuggestions] = useState([]);
+  const [suggestions, setSuggestions] = useState<htmlElementsListObj[]>([]);
 
   // Useeffects
   useEffect(() => {
@@ -82,28 +83,28 @@ export default function Leftsidebar() {
 
   const addElement = () => {
     const selectedElement = suggestions.find(el => el?.tagName === inputValue);
-    const element = React.createElement(selectedElement?.tagName)
-    console.log("element",element)
     if (selectedElement) {
+      const element = React.createElement(selectedElement?.tagName)
+      console.log("element", element)
       dispatch(addRootHtmlElement({
         "rootElement": selectedElement?.tagName,
-        "styles":[
+        "styles": [
           {
-            "temp":"temp"
+            "temp": "temp"
           }
-        ] 
+        ]
       }));
     }
   };
 
-  const deleteHtmlTag = ( element ) => {
+  const deleteHtmlTag = (element) => {
     dispatch(deleteElement(element));
   }
 
-  const selectTag = ( element ) => {
+  const selectTag = (element) => {
     dispatch(addCurrentSelectedTag(element))
   }
-  console.log("currentSelectedTag",currentSelectedTag)
+  console.log("currentSelectedTag", currentSelectedTag)
 
   return (
     <div className='left-sidebar'>
@@ -167,11 +168,11 @@ export default function Leftsidebar() {
         <div className="dom-container">
           {
             htmlElementRedux?.length > 0 && htmlElementRedux?.map((el) => {
-              return <div className={`html-tag ${currentSelectedTag?.id == el.id && "selected"}`} onClick={()=>{selectTag(el)}}>
+              return <div className={`html-tag ${currentSelectedTag?.id == el.id && "selected"}`} onClick={() => { selectTag(el) }}>
                 <div className="tag-name">
                   <span>{el.rootElement}</span>
                 </div>
-                <div className="delete-btn" onClick={()=>{deleteHtmlTag(el)}}>
+                <div className="delete-btn" onClick={() => { deleteHtmlTag(el) }}>
                   <Delete />
                 </div>
               </div>

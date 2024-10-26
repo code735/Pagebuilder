@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { htmlTagObj, initialState } from "../../types/htmlElementTypes"
+import { htmlTagObj, initialStateType } from "../../types/htmlElementTypes"
 
-const initialState:initialState = {
+const initialState:initialStateType = {
   allHtmlTags:  [],
   switchControl: "add-html",
   currentSelectedTag: null

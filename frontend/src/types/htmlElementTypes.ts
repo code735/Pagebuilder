@@ -1,15 +1,15 @@
 export interface htmlTagObj {
   id: number;
   rootElement: string;
-  styles: styles[];
+  styles: stylesType[];
   childElements: htmlTagObj[]
 }
 
-export interface styles {
+export interface stylesType {
   [key: string]: string;
 }
 
-export interface initialState {
+export interface initialStateType {
   allHtmlTags: htmlTagObj[],
   switchControl: string,
   currentSelectedTag: htmlTagObj | null
