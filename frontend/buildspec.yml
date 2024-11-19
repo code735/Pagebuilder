@@ -1,0 +1,15 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      nodejs: 10
+    commands:
+      - npm install -g @angular/cli@8.3.5
+      - npm install
+  build:
+    commands:
+      - ng build --prod --build-optimizer
+  post_build:
+    commands:
+      - aws s3 sync dist/boilerplate/ s3://pagebuilder-v1.0.1 --acl public-read --delete
+      - aws cloudfront create-invalidation --distribution-id E2OZF36WFL3JON --paths "/index.html"
