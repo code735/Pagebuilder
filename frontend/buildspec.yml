@@ -1,15 +1,23 @@
 version: 0.2
+
 phases:
   install:
     runtime-versions:
-      nodejs: 10
+      nodejs: 18.20.4 # Use your app's Node.js version
     commands:
-      - npm install -g @angular/cli@8.3.5
+      - echo "Installing dependencies..."
       - npm install
   build:
     commands:
-      - ng build --prod --build-optimizer
+      - echo "Building the React app..."
+      - npm run build
   post_build:
     commands:
-      - aws s3 sync dist/boilerplate/ s3://pagebuilder-v1.0.1 --acl public-read --delete
-      - aws cloudfront create-invalidation --distribution-id E2OZF36WFL3JON --paths "/index.html"
+      - echo "Syncing build artifacts to S3..."
+      - aws s3 sync build/ s3://pagebuilder-v1.0.1 --delete
+      - echo "Invalidating CloudFront cache..."
+      - aws cloudfront create-invalidation --distribution-id E2OZF36WFL3JON --paths "/*"
+
+artifacts:
+  files:
+    - '**/*'
