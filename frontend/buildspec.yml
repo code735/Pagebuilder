@@ -14,9 +14,9 @@ phases:
   post_build:
     commands:
       - echo "Syncing build artifacts to S3..."
-      - aws s3 sync build/ s3://pagebuilder-v1.0.1 --delete
+      - aws s3 sync build/ s3://pagebuilder-v1.0.2 --delete
       - echo "Invalidating CloudFront cache..."
-      - aws cloudfront create-invalidation --distribution-id E2OZF36WFL3JON --paths "/*"
+      - aws cloudfront create-invalidation --distribution-id E22SY9SVEOD43 --paths "/*"
 
 artifacts:
   files:
