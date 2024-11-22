@@ -6,11 +6,11 @@ phases:
       nodejs: 18.20.4 # Use your app's Node.js version
     commands:
       - echo "Installing dependencies..."
-      - npm install
+      - npm install --prefix $CODEBUILD_SRC_DIR/frontend
   build:
     commands:
       - echo "Building the React app..."
-      - npm run build
+      - npm run build --prefix $CODEBUILD_SRC_DIR/frontend
   post_build:
     commands:
       - echo "Syncing build artifacts to S3..."
