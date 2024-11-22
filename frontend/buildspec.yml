@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 18.20.4 # Use your app's Node.js version
+      nodejs: 18.20.4
     commands:
       - echo "Installing dependencies..."
       - npm install --prefix $CODEBUILD_SRC_DIR/frontend
@@ -14,7 +14,7 @@ phases:
   post_build:
     commands:
       - echo "Syncing build artifacts to S3..."
-      - aws s3 sync frontend/build/ s3://pagebuilder-v1.0.2 --delete
+      - aws s3 sync $CODEBUILD_SRC_DIR/frontend/build/ s3://pagebuilder-v1.0.2 --delete
       - echo "Invalidating CloudFront cache..."
       - aws cloudfront create-invalidation --distribution-id E22SY9SVEOD43 --paths "/*"
 
