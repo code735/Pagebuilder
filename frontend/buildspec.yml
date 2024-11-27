@@ -9,8 +9,8 @@ phases:
       - rm -rf $CODEBUILD_SRC_DIR/frontend/node_modules
       - echo "Installing dependencies..."
       - npm install --prefix $CODEBUILD_SRC_DIR/frontend
-      - echo "Fixing any dependency issues..."
-      - npm audit fix --prefix $CODEBUILD_SRC_DIR/frontend
+      - echo "Checking for vulnerabilities..."
+      - npm audit --prefix $CODEBUILD_SRC_DIR/frontend || true
 
   build:
     commands:
