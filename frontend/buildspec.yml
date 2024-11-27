@@ -5,16 +5,27 @@ phases:
     runtime-versions:
       nodejs: 18
     commands:
+      - echo "Cleaning up old dependencies..."
+      - rm -rf $CODEBUILD_SRC_DIR/frontend/node_modules
       - echo "Installing dependencies..."
       - npm install --prefix $CODEBUILD_SRC_DIR/frontend
+      - echo "Fixing any dependency issues..."
+      - npm audit fix --prefix $CODEBUILD_SRC_DIR/frontend
+
   build:
     commands:
       - echo "Building the React app..."
       - npm run build --prefix $CODEBUILD_SRC_DIR/frontend
+
   post_build:
     commands:
       - echo "Syncing build artifacts to S3..."
-      - aws s3 sync $CODEBUILD_SRC_DIR/frontend/build/ s3://pagebuilder-v1.0.2 --delete
+      - if [ -d "$CODEBUILD_SRC_DIR/frontend/build" ]; then
+          aws s3 sync $CODEBUILD_SRC_DIR/frontend/build/ s3://pagebuilder-v1.0.2 --delete;
+        else
+          echo "Build directory does not exist. Skipping S3 sync.";
+          exit 1;
+        fi
       - echo "Invalidating CloudFront cache..."
       - aws cloudfront create-invalidation --distribution-id E22SY9SVEOD43 --paths "/*"
 
