@@ -60,7 +60,7 @@ export default function Rightsidebar() {
 
   return (
     <div className='right-sidebar'>
-      
+      <h2><i>CSS inputs coming soon </i></h2>
     </div>
   );
 }
