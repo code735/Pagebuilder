@@ -27,7 +27,7 @@ phases:
           exit 1;
         fi
       - echo "Invalidating CloudFront cache..."
-      - aws cloudfront create-invalidation --distribution-id E22SY9SVEOD43 --paths "/*"
+      - aws cloudfront create-invalidation --distribution-id E2OZF36WFL3JON --paths "/*"
 
 artifacts:
   files:
