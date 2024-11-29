@@ -10,48 +10,39 @@ export default function Rightsidebar() {
   const htmlElementRedux = useSelector((state: CurrentRootState)=>state.htmlElement.allHtmlTags);
 
   // useStates
-  const [htmlElements, setHtmlElements] = useState([
-    'div',
-    'span',
-    'p', // Paragraph
-    'a', // Anchor link
-    'img', // Image
-    'ul', // Unordered List
-    'ol', // Ordered List
-    'li', // List Item
-    'h1', // Heading 1
-    'h2', // Heading 2
-    'h3', // Heading 3
-    'h4', // Heading 4
-    'h5', // Heading 5
-    'h6', // Heading 6
-    'button', // Button
-    'input', // Input field
-    'form', // Form
-    'label', // Label for form elements
-    'table', // Table
-    'thead', // Table head
-    'tbody', // Table body
-    'tr', // Table row
-    'td', // Table cell
-    'th', // Table header cell
-    'nav', // Navigation
-    'header', // Header
-    'footer', // Footer
-    'section', // Section
-    'article', // Article
-    'aside', // Aside
-    'main', // Main content area
-    'figure', // Figure with optional caption
-    'figcaption', // Caption for figure
-    'video', // Video
-    'audio', // Audio
-    'canvas', // Canvas for graphics
-    'iframe', // Inline frame
-    'blockquote', // Blockquote
-    'code', // Inline code
-    'pre', // Preformatted text
+  const [cssProperties, setCssProperties] = useState([
+    { property: "color", inputType: "color-picker" },
+    { property: "background-color", inputType: "color-picker" },
+    { property: "font-size", inputType: "number-input" },
+    { property: "font-family", inputType: "font" },
+    { property: "padding", inputType: "four-box-input" },
+    { property: "margin", inputType: "four-box-input" },
+    { property: "border", inputType: "border" },
+    { property: "border-radius", inputType: "number-input" },
+    { property: "width", inputType: "number-input" },
+    { property: "height", inputType: "number-input" },
+    { property: "line-height", inputType: "number-input" },
+    { property: "letter-spacing", inputType: "number-input" },
+    { property: "text-align", inputType: "options-box", options: ["left", "center", "right", "justify"] },
+    { property: "display", inputType: "search-options-box", options: ["inline", "block", "flex", "contents", "grid", "table", "table-row", "table-column"] },
+    { property: "justify-content", inputType: "options-box", options: ["center", "flex-start", "flex-end", "space-between", "space-around"] },
+    { property: "align-items", inputType: "options-box", options: ["flex-start", "center", "flex-end", "stretch", "baseline"] },
+    { property: "position", inputType: "options-box", options: ["static", "relative", "absolute", "fixed", "sticky"] },
+    { property: "top", inputType: "number-input" },
+    { property: "right", inputType: "number-input" },
+    { property: "bottom", inputType: "number-input" },
+    { property: "left", inputType: "number-input" },
+    { property: "box-shadow", inputType: "box-shadow-input" },
+    { property: "opacity", inputType: "slider" },
+    { property: "overflow", inputType: "options-box", options: ["visible", "hidden", "scroll", "auto"] },
+    { property: "cursor", inputType: "options-box", options: ["default", "pointer", "move", "text", "wait", "crosshair", "not-allowed"] }
   ]);
+  
+  
+  
+  // if there are more than 6 options then use search-options-box otherwise use options box
+  
+
   const [selectedValue, setSelectedValue] = useState('');
 
   // useEffects
