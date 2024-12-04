@@ -20,12 +20,13 @@
       &::-webkit-scrollbar-track { background: transparent; }
       &::-webkit-scrollbar-thumb { background: #fff; border-radius: 10px; margin: 10px; padding: 10px; cursor: pointer; }
       .html-tag { 
-        & { cursor: pointer; font-size: 14px; font-weight: 200; display: flex; align-items: center; justify-content: space-between; }
+        & { cursor: pointer; font-size: 14px; font-weight: 200; display: flex; align-items: center; justify-content: space-between; padding: 0 5px; }
         .tag-name { padding: 5px; }
         .delete-btn { 
           svg { font-size: 14px; cursor: pointer; }
          }
       }
+      .html-tag.selected { background: #0d89ff; }
       .html-tag:hover { border: 1px solid #7d7ded; }
     }
   }
