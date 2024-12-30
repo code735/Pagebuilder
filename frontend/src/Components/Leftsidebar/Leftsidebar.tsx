@@ -72,8 +72,6 @@ export default function Leftsidebar() {
     setSuggestions([...topSuggestions,...removedSuggestions]);
   }, [inputValue]);
 
-  console.log("suggestions",suggestions)
-
   // Functions 
 
   const switchLeftSidebarFunctionalities = (functionality) => {
@@ -92,7 +90,6 @@ export default function Leftsidebar() {
     const selectedElement = suggestions.find(el => el?.tagName === inputValue);
     if (selectedElement) {
       const element = React.createElement(selectedElement?.tagName)
-      console.log("element", element)
       dispatch(addRootHtmlElement({
         "rootElement": selectedElement?.tagName,
         "styles": [
@@ -111,16 +108,13 @@ export default function Leftsidebar() {
   const selectTag = (element) => {
     dispatch(addCurrentSelectedTag(element))
   }
-  console.log("currentSelectedTag", currentSelectedTag)
 
   return (
     <div className='left-sidebar'>
       <div className="left-sidebar-navigation">
         <div className="nav-options">
           <div className="search-option">
-            <div className={`search-icon ${switchControlRedux == "search-dom" && "selected"}`} onClick={() => {
-              dispatch(handleSwitchController("search-dom"))
-            }}>
+            <div className={`search-icon ${switchControlRedux == "search-dom" && "selected"}`}>
               <SearchOutlinedIcon />
             </div>
             {

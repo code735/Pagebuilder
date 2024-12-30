@@ -6,7 +6,4 @@
 
 .sidebar-and-editor-container {
   & { display: flex; justify-content: space-between; box-sizing: border-box; }
-  .right-sidebar {
-    & { background: #2c2c2c; height: calc(100vh - 45px); width: 20vw; color: #fff; padding: 6px 10px 20px; box-sizing: border-box; }
-  }
 }

@@ -3,11 +3,13 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addRootHtmlElement } from '../../store/features/htmlElementSlice';
 import { CurrentRootState } from '../../store/store';
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import { Add } from '@mui/icons-material';
 
 export default function Rightsidebar() {
   // Redux
   const dispatch = useDispatch();
-  const htmlElementRedux = useSelector((state: CurrentRootState)=>state.htmlElement.allHtmlTags);
+  const htmlElementRedux = useSelector((state: CurrentRootState) => state.htmlElement.allHtmlTags);
 
   // useStates
   const [cssProperties, setCssProperties] = useState([
@@ -37,19 +39,20 @@ export default function Rightsidebar() {
     { property: "overflow", inputType: "options-box", options: ["visible", "hidden", "scroll", "auto"] },
     { property: "cursor", inputType: "options-box", options: ["default", "pointer", "move", "text", "wait", "crosshair", "not-allowed"] }
   ]);
-  
-  
-  
+
+
+
   // if there are more than 6 options then use search-options-box otherwise use options box
-  
+
 
   const [selectedValue, setSelectedValue] = useState('');
+  const [inputValue, setInputValue] = useState('');
 
   // useEffects
   useEffect(() => {
-    console.log("htmlElementRedux",htmlElementRedux)
+    console.log("htmlElementRedux", htmlElementRedux)
   }, [htmlElementRedux])
-  
+
 
   // Functions
   const addElement = () => {
@@ -60,7 +63,18 @@ export default function Rightsidebar() {
 
   return (
     <div className='right-sidebar'>
-      <h2>CSS inputs coming soon</h2>
+
+      <div className="searchbar-addicon-container">
+        <div className={`search-icon`}>
+          <SearchOutlinedIcon />
+        </div>
+        <div className="search-bar">
+          <input type="text" placeholder='Add CSS...' value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+        </div>
+        <div className="add-html-icon" onClick={addElement}>
+          <Add />
+        </div>
+      </div>
     </div>
   );
 }
