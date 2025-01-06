@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addRootHtmlElement } from '../../store/features/htmlElementSlice';
 import { CurrentRootState } from '../../store/store';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import { Add } from '@mui/icons-material';
+import { Add, Close } from '@mui/icons-material';
 
 export default function Rightsidebar() {
   // Redux
@@ -47,6 +47,7 @@ export default function Rightsidebar() {
 
   const [selectedValue, setSelectedValue] = useState('');
   const [inputValue, setInputValue] = useState('');
+  const [focusedInput, setFocusedInput] = useState(false)
 
   // useEffects
   useEffect(() => {
@@ -63,17 +64,27 @@ export default function Rightsidebar() {
 
   return (
     <div className='right-sidebar'>
-
       <div className="searchbar-addicon-container">
         <div className={`search-icon`}>
           <SearchOutlinedIcon />
         </div>
         <div className="search-bar">
-          <input type="text" placeholder='Add CSS...' value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+          <input type="text" placeholder='Add CSS...' value={inputValue} onChange={(e) => { setInputValue(e.target.value) }} onFocus={() => setFocusedInput(true)} />
         </div>
-        <div className="add-html-icon" onClick={addElement}>
-          <Add />
-        </div>
+        {
+          focusedInput ? <div className="close-icon-container" onClick={()=>{setFocusedInput(false)}}>
+            <Close />
+          </div> : <div className="add-html-icon" onClick={addElement}>
+            <div className="add-icon-container"><Add /></div>
+          </div>
+        }
+      </div>
+      <div className="suggestions-container">
+        {
+          focusedInput && cssProperties?.map((el) => {
+            return <div className="suggestion">{el.property}</div>
+          })
+        }
       </div>
     </div>
   );
